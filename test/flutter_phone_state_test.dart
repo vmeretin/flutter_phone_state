@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_phone_state/flutter_phone_state.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('flutter_phone_state');
+  const channel = MethodChannel('flutter_phone_state');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
