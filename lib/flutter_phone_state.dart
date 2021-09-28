@@ -145,7 +145,7 @@ class FlutterPhoneState with WidgetsBindingObserver {
         status == PhoneCallStatus.cancelled) {
       _log.info('Call is done: ${call.id}- Removing due to $status');
       call.complete(status).then((event) {
-        _localEvents.add(event!);
+        _localEvents.add(event);
       });
       _calls.removeWhere((existing) => existing == call);
     } else {

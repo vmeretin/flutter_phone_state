@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:logging/logging.dart';
 import 'package:uuid/uuid.dart';
+
 import 'extensions_static.dart';
 
 final Logger _log = Logger('flutterPhoneState');
@@ -123,7 +124,7 @@ class PhoneCall {
 
   /// Marks this call as complete, and returns the final event as a [FutureOr].  If the
   /// event stream has subscribers, it will first close, and then return
-  Future<PhoneCallEvent?> complete(PhoneCallStatus status) async {
+  Future<PhoneCallEvent> complete(PhoneCallStatus status) async {
     if (_isComplete) {
       throw 'Illegal state: This call is already marked complete';
     }
@@ -131,13 +132,11 @@ class PhoneCall {
     final event = recordStatus(status);
     _isComplete = true;
     final stream = _eventStream;
-    if (stream != null) {
-      if (stream.isClosed == false) {
-        await stream.close();
-        return event;
-      } else {
-        return event;
-      }
+    if (stream != null && stream.isClosed == false) {
+      await stream.close();
+      return event;
+    } else {
+      return event;
     }
   }
 
