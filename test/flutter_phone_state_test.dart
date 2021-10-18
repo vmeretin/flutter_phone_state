@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_phone_state/flutter_phone_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -15,9 +14,5 @@ void main() {
 
   tearDown(() {
     channel.setMockMethodCallHandler(null);
-  });
-
-  test('getPlatformVersion', () async {
-    expect(await FlutterPhoneState.platformVersion, '42');
   });
 }

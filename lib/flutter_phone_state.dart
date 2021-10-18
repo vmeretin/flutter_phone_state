@@ -13,7 +13,6 @@ export 'package:flutter_phone_state/phone_event.dart';
 
 /// Phone events created by this plugin
 final _localEvents = StreamController<PhoneCallEvent>.broadcast();
-const MethodChannel _channel = MethodChannel('flutter_phone_state');
 
 final Logger _log = Logger('flutterPhoneState');
 final _instance = FlutterPhoneState();
@@ -22,11 +21,6 @@ class FlutterPhoneState with WidgetsBindingObserver {
   /// Configures logging.  FlutterPhoneState uses the [logging] plugin.
   static void configureLogs({Level? level, Logging? onLog}) {
     configureLogging(logger: _log, level: level, onLog: onLog);
-  }
-
-  static Future<String> get platformVersion async {
-    final version = await _channel.invokeMethod('getPlatformVersion') as String;
-    return version;
   }
 
   /// A broadcast stream of raw events from the underlying phone state.  It's preferred to use [phoneCallEvents]
